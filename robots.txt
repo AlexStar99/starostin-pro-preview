@@ -1,0 +1,3 @@
+# Временное превью. Боевой сайт: https://starostin.pro/
+User-agent: *
+Disallow: /

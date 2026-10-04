@@ -1,0 +1,61 @@
+/* ==========================================================================
+   Блок «Мне доверяют»: клиенты.
+   Пока файлов логотипов нет, каждый клиент показан типографской вордмаркой
+   (Geologica, единый серо-графитовый монохром, у каждой свой вес и трекинг).
+   clients.js пробует загрузить data-logo (assets/img/clients/<slug>.svg)
+   и при успехе заменяет вордмарку на <img>. Если файла нет, остаётся текст.
+   Десктоп: сетка 9 × 1, планшет 3 × 3. Мобильный: бегущая лента
+   (модификатор .clients--grid оставляет сетку 3 колонки, как на «Об авторе»).
+   Только токены из site.css. Контент виден без JS: без скрипта лента
+   превращается в обычную горизонтальную прокрутку.
+   ========================================================================== */
+.clients{padding-block:clamp(26px,3.6vw,44px);border-bottom:1px solid var(--line)}
+.clients-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px 24px;flex-wrap:wrap;margin-bottom:clamp(16px,2vw,24px)}
+.clients-head .note{font-size:.92rem;color:var(--fg-3);margin:0}
+.clients-strip{min-width:0}
+.clients-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.client{min-width:0;min-height:104px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:7px;text-align:center;padding:18px 10px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .3s}
+.client:hover{background:var(--surface)}
+.client small{font:500 .6rem/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3)}
+.client.is-clone{display:none}
+
+/* Вордмарки: один цвет, разная пластика */
+.wm{display:block;color:var(--fg-2);font-family:var(--sans);font-size:1rem;line-height:1.12;letter-spacing:-.01em;text-wrap:balance;transition:color .25s}
+.client:hover .wm{color:var(--fg)}
+.wm-mriya{font-weight:300;font-size:.86rem;text-transform:uppercase;letter-spacing:.2em;padding-left:.2em}
+.wm-sushi-wok{font-weight:800;font-size:1.04rem;text-transform:uppercase;letter-spacing:-.02em}
+.wm-starik{font-weight:500;font-size:.98rem;letter-spacing:.01em}
+.wm-krylya{font-weight:200;font-size:1rem;text-transform:uppercase;letter-spacing:.32em;padding-left:.32em}
+.wm-nina{font-weight:300;font-size:1.02rem;letter-spacing:.02em}
+.wm-limo{font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:.14em;padding-left:.14em}
+.wm-apex{font-weight:500;font-size:.86rem;text-transform:uppercase;letter-spacing:.26em;padding-left:.26em}
+.wm-manifest{font-weight:600;font-size:1.1rem;text-transform:lowercase;letter-spacing:-.03em}
+.wm-k7{font-weight:800;font-size:1.5rem;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+
+/* Логотип-картинка: монохром, в цвет при наведении (на светлой теме) */
+.client-logo{display:block;width:auto;height:auto;max-height:34px;max-width:min(100%,120px);filter:grayscale(1);opacity:.7;transition:filter .3s,opacity .3s}
+.client:hover .client-logo{filter:none;opacity:1}
+/* В тёмной теме логотипы для светлого фона инвертируются и остаются монохромными */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .client-logo,:root:not([data-theme="light"]) .client:hover .client-logo{filter:grayscale(1) invert(1)}
+}
+:root[data-theme="dark"] .client-logo,:root[data-theme="dark"] .client:hover .client-logo{filter:grayscale(1) invert(1)}
+
+@media (max-width:1180px){.clients-list{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){
+  .clients:not(.clients--grid) .clients-strip{overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--gutter) * -1);padding-inline:var(--gutter)}
+  .clients:not(.clients--grid) .clients-strip::-webkit-scrollbar{display:none}
+  .clients:not(.clients--grid) .clients-list{display:flex;width:max-content;border:0}
+  .clients:not(.clients--grid) .client{min-height:0;flex:none;padding:12px 22px;border:0;border-right:1px solid var(--line);white-space:nowrap}
+  .clients:not(.clients--grid) .client.is-clone{display:flex}
+  .clients:not(.clients--grid) .clients-strip.is-marquee{overflow:hidden;padding-inline:0;mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+  .clients-strip.is-marquee .clients-list{animation:clients-run 34s linear infinite}
+  .clients-strip.is-marquee:hover .clients-list{animation-play-state:paused}
+  .clients--grid .clients-list{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .clients--grid .client{padding:14px 6px;min-height:84px;gap:5px}
+  .clients--grid .wm{font-size:.84rem}
+  .clients--grid .wm-k7{font-size:1.25rem}
+  .clients--grid .client small{font-size:.54rem;letter-spacing:.06em}
+}
+@keyframes clients-run{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.clients-strip.is-marquee .clients-list{animation:none}}

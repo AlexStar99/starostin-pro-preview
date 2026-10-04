@@ -1,0 +1,181 @@
+/* Калькуляторы для руководителей и формы захвата. Только токены из site.css. */
+
+/* ---- Каркас инструмента ---- */
+.tool{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--surface)}
+@media (max-width:960px){.tool{grid-template-columns:1fr}}
+.tool-in{padding:clamp(20px,3vw,40px);display:flex;flex-direction:column;gap:22px;min-width:0}
+.tool-out{padding:clamp(20px,3vw,40px);background:var(--slab);color:var(--on-slab);display:flex;flex-direction:column;gap:22px;position:relative;overflow:hidden;isolation:isolate;min-width:0}
+.tool-out .muted,.tool-out .calc-note{color:var(--on-slab-2)}
+.tool-head{display:flex;flex-direction:column;gap:12px;margin-bottom:clamp(20px,3vw,36px);max-width:760px}
+.tool-head .h2{font-size:clamp(1.9rem,4vw,3.2rem)}
+.tool-wrap+.tool-wrap{margin-top:clamp(72px,9vw,128px)}
+.hint{font-size:.82rem;color:var(--fg-3);line-height:1.45}
+.tool-out .hint{color:var(--on-slab-2)}
+
+/* ---- Сегментный переключатель сценариев ---- */
+.seg{display:inline-grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;padding:4px;border-radius:999px;background:var(--bg-2);border:1px solid var(--line);max-width:100%}
+.seg button{border:0;background:transparent;color:var(--fg-2);font:600 .88rem/1.2 var(--sans);padding:10px 16px;border-radius:999px;cursor:pointer;transition:background .3s,color .3s;white-space:normal}
+.seg button[aria-selected="true"]{background:var(--fg);color:var(--bg)}
+.scenario-text{font-size:.95rem;color:var(--fg-2);min-height:3em}
+
+/* ---- Люди: было / стало ---- */
+.people{display:flex;flex-wrap:wrap;gap:6px;min-height:34px}
+.person{width:26px;height:34px;color:var(--on-slab);transition:opacity .5s,transform .5s var(--ease),color .5s}
+.person svg{width:100%;height:100%}
+.person.is-freed{opacity:.22;transform:scale(.88)}
+.person.is-hire{color:var(--slab-accent);opacity:.9}
+.person.is-hire svg{stroke-dasharray:3 3}
+.person.is-boost{color:var(--slab-accent)}
+.people-legend{display:flex;gap:16px;flex-wrap:wrap;font:500 .72rem var(--mono);letter-spacing:.06em;color:var(--on-slab-2)}
+.people-legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:-1px;background:currentColor}
+
+/* ---- Сравнительные полосы ---- */
+.bars{display:flex;flex-direction:column;gap:12px}
+.bar-row{display:grid;grid-template-columns:86px minmax(0,1fr) auto;gap:12px;align-items:center;font-size:.85rem}
+.bar-row .lbl{font:600 .68rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--on-slab-2)}
+.bar-row .val{font:600 .9rem var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar-track{height:14px;border-radius:7px;background:color-mix(in oklab,var(--on-slab) 8%,transparent);overflow:hidden}
+.bar-fill{height:100%;width:var(--w,0%);border-radius:7px;background:var(--on-slab-2);transition:width .8s var(--ease)}
+.bar-fill.is-ai{background:var(--accent-fill)}
+.tool-in .bar-row .lbl{color:var(--fg-3)}
+.tool-in .bar-track{background:var(--bg-2)}
+.tool-in .bar-fill{background:var(--fg-3)}
+.tool-in .bar-fill.is-ai{background:var(--accent-fill)}
+
+/* ---- Ключевые цифры ---- */
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 22px}
+.kpi{display:flex;flex-direction:column;gap:6px;padding-top:12px;border-top:1px solid color-mix(in oklab,var(--on-slab) 12%,transparent);min-width:0}
+.kpi .out-label{font:600 .66rem var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--on-slab-2)}
+.kpi .v{font:500 clamp(1.7rem,3.4vw,2.6rem)/1 var(--serif);letter-spacing:-.03em;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.kpi .v small{font:500 .78rem var(--sans);letter-spacing:0;color:var(--on-slab-2);margin-left:.3em}
+.kpi.is-main{grid-column:1/-1}
+.kpi.is-main .v{font-size:clamp(2.6rem,6vw,4.6rem);color:var(--on-slab)}
+.kpi .v.is-neg{color:var(--slab-accent)}
+@media (max-width:420px){.kpis{grid-template-columns:1fr}}
+
+/* ---- Одометр: цифры прокручиваются ---- */
+.odo{display:inline-flex;align-items:baseline;overflow:hidden;line-height:1;height:1em;vertical-align:baseline}
+.odo .col{display:inline-flex;flex-direction:column;transition:transform .9s var(--ease)}
+.odo .col span{height:1em;line-height:1;display:block;text-align:center}
+.odo .ch{display:inline-block}
+
+/* ---- Неделя отдела: до и после ---- */
+.dept-tasks{display:flex;flex-direction:column;gap:10px;list-style:none;margin:0;padding:0}
+.dept-task{display:grid;grid-template-columns:minmax(0,1fr) 110px;gap:6px 14px;align-items:center}
+.dept-task .name{font-size:.92rem}
+.dept-task .hrs{font:600 .8rem var(--mono);text-align:right;color:var(--fg-2);font-variant-numeric:tabular-nums}
+.dept-task .hrs b{color:var(--accent)}
+.dept-task .track{grid-column:1/-1;height:8px;border-radius:4px;background:var(--bg-2);position:relative;overflow:hidden}
+.dept-task .track i{position:absolute;inset:0 auto 0 0;border-radius:4px;transition:width .8s var(--ease)}
+.dept-task .track .b{background:var(--fg-3);opacity:.45;width:var(--b)}
+.dept-task .track .a{background:var(--accent-fill);width:var(--a)}
+.switch{display:inline-flex;align-items:center;gap:12px;cursor:pointer;font-weight:600;user-select:none}
+.switch input{position:absolute;opacity:0;pointer-events:none}
+.switch .knob{width:52px;height:30px;border-radius:999px;background:var(--bg-2);border:1px solid var(--line);position:relative;transition:background .3s}
+.switch .knob::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--fg);transition:transform .35s var(--ease)}
+.switch input:checked+.knob{background:var(--accent-fill)}
+.switch input:checked+.knob::after{transform:translateX(22px)}
+.switch input:focus-visible+.knob{outline:2px solid var(--accent-fill);outline-offset:3px}
+
+/* ---- Таймлайн решения ---- */
+.tl{display:flex;flex-direction:column;gap:14px}
+.tl-row{display:flex;flex-direction:column;gap:6px}
+.tl-row .lbl{font:600 .66rem var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--on-slab-2);display:flex;justify-content:space-between;gap:10px}
+.tl-track{display:flex;height:30px;border-radius:8px;overflow:hidden;gap:2px}
+.tl-seg{display:flex;align-items:center;justify-content:center;font:600 .62rem var(--mono);letter-spacing:.04em;color:var(--on-accent);white-space:nowrap;overflow:hidden;transition:flex-grow .8s var(--ease);min-width:0;padding-inline:4px}
+/* шкала этапов: от светлого к кораллу, решение - самый светлый «финиш» */
+.tl-seg.s1,.tl-legend .s1{--c:color-mix(in oklab,var(--accent-fill) 28%,var(--on-slab))}
+.tl-seg.s2,.tl-legend .s2{--c:color-mix(in oklab,var(--accent-fill) 58%,var(--on-slab))}
+.tl-seg.s3,.tl-legend .s3{--c:var(--accent-fill)}
+.tl-seg.s4,.tl-legend .s4{--c:var(--on-slab)}
+.tl-seg{background:var(--c)}
+.tl-legend{display:flex;flex-wrap:wrap;gap:12px;font:500 .7rem var(--mono);color:var(--on-slab-2)}
+.tl-legend span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+
+/* ---- Публикация во все соцсети ---- */
+.fan{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+.fan-src{align-self:start;border:1px solid color-mix(in oklab,var(--on-slab) 18%,transparent);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;background:var(--slab-2)}
+.fan-src b{font:600 .66rem var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--slab-accent)}
+.fan-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:8px}
+.fan-tile{border-radius:10px;padding:10px 12px;background:color-mix(in oklab,var(--on-slab) 6%,transparent);border:1px solid color-mix(in oklab,var(--on-slab) 10%,transparent);font-size:.82rem;display:flex;flex-direction:column;gap:3px;transition:opacity .4s,transform .5s var(--ease),border-color .4s}
+.fan-tile small{font:500 .64rem var(--mono);color:var(--on-slab-2);letter-spacing:.04em}
+.fan-tile.is-off{opacity:.25}
+.fan-tile.is-pulse{border-color:var(--slab-accent);transform:translateY(-3px)}
+
+/* ---- Анализ конкурентов: отчёт агента ---- */
+.report{border:1px solid color-mix(in oklab,var(--on-slab) 16%,transparent);border-radius:14px;padding:16px 18px;background:var(--slab-2);display:flex;flex-direction:column;gap:10px;font-size:.88rem}
+.report header{display:flex;justify-content:space-between;gap:10px;font:600 .66rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-slab-2)}
+.report ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.report li{display:flex;gap:10px;opacity:1;transition:opacity .5s,transform .5s var(--ease)}
+.report li.is-wait{opacity:0;transform:translateY(6px)}
+.report li::before{content:"";flex:none;width:8px;height:8px;margin-top:.5em;border-radius:2px;background:var(--slab-accent)}
+
+/* ---- График промедления ---- */
+.chart{width:100%;height:auto;display:block}
+.chart .grid line{stroke:color-mix(in oklab,var(--on-slab) 10%,transparent)}
+.chart .axis text{fill:var(--on-slab-2);font:500 10px var(--mono)}
+.chart .area{fill:color-mix(in oklab,var(--accent-fill) 22%,transparent)}
+.chart .line{fill:none;stroke:var(--slab-accent);stroke-width:2.5}
+.chart .dot{fill:var(--slab-accent)}
+
+/* ---- Квиз-аудит ---- */
+.quiz-q{display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--line);padding-top:16px}
+.quiz-q legend{font-weight:600;padding:0;margin-bottom:8px}
+.quiz-q fieldset{border:0;margin:0;padding:0;min-width:0}
+.quiz-opts{display:flex;flex-wrap:wrap;gap:8px}
+.quiz-opts label{position:relative}
+.quiz-opts input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.quiz-opts span{display:inline-block;padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font-size:.88rem;transition:all .2s}
+.quiz-opts input:checked+span{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.quiz-opts input:focus-visible+span{outline:2px solid var(--accent-fill);outline-offset:2px}
+.ring{width:150px;height:150px;flex:none}
+.ring circle{fill:none;stroke-width:12}
+.ring .bg{stroke:color-mix(in oklab,var(--on-slab) 10%,transparent)}
+.ring .fg{stroke:var(--slab-accent);stroke-linecap:round;transition:stroke-dashoffset 1s var(--ease);transform:rotate(-90deg);transform-origin:50% 50%}
+.ring text{fill:var(--on-slab);font:500 34px var(--serif);text-anchor:middle;dominant-baseline:central}
+.recs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.recs li{display:flex;gap:10px;font-size:.92rem}
+.recs li::before{content:"→";color:var(--slab-accent);font-family:var(--mono)}
+
+/* ---- Навигация по инструментам ---- */
+.tool-nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 72px);z-index:30;background:color-mix(in oklab,var(--bg) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-block:1px solid var(--line)}
+.tool-nav ul{list-style:none;margin:0;padding:10px 0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.tool-nav ul::-webkit-scrollbar{display:none}
+.tool-nav a{display:block;white-space:nowrap;padding:8px 14px;border-radius:999px;text-decoration:none;font-size:.88rem;color:var(--fg-2);border:1px solid transparent}
+.tool-nav a.is-active,.tool-nav a:hover{color:var(--fg);border-color:var(--line);background:var(--surface)}
+.teasers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:900px){.teasers{grid-template-columns:1fr}}
+.teaser{display:flex;flex-direction:column;gap:10px;padding:22px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);text-decoration:none;transition:border-color .3s,transform .45s var(--ease);min-width:0}
+.teaser:hover{border-color:var(--fg);transform:translateY(-3px);color:inherit}
+.teaser .kind{font:600 .66rem var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+.teaser h3{font-size:1.35rem}
+.teaser p{color:var(--fg-2);font-size:.92rem}
+.teaser .go{margin-top:auto;font:600 .8rem var(--mono);color:var(--fg)}
+
+/* ---- Модалка захвата ---- */
+.capture{border:0;padding:0;background:transparent;max-width:min(560px,calc(100vw - 24px));width:100%;max-height:calc(100dvh - 24px);color:var(--fg)}
+.capture::backdrop{background:color-mix(in oklab,var(--slab) 62%,transparent);backdrop-filter:blur(6px)}
+.capture[open]{animation:capIn .45s var(--ease)}
+@keyframes capIn{from{opacity:0;transform:translateY(24px) scale(.98)}}
+.capture-card{background:var(--bg);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,34px);display:flex;flex-direction:column;gap:16px;overflow:auto;max-height:calc(100dvh - 24px)}
+.capture-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.capture-top h2{font-size:clamp(1.6rem,4vw,2.1rem)}
+.capture-x{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--fg);cursor:pointer;font:400 1.2rem var(--mono)}
+.capture-sum{background:var(--slab);color:var(--on-slab);border-radius:14px;padding:14px 16px;font-size:.88rem;display:flex;flex-direction:column;gap:4px}
+.capture-sum b{font:600 .64rem var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--slab-accent)}
+.f-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:520px){.f-grid{grid-template-columns:1fr}}
+.f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.f label{font-size:.82rem;font-weight:600;color:var(--fg-2)}
+.f .input,.f select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--fg);font:500 1rem var(--sans)}
+.f select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--fg-2) 50%),linear-gradient(135deg,var(--fg-2) 50%,transparent 50%);background-position:calc(100% - 18px) 55%,calc(100% - 13px) 55%;background-size:5px 5px;background-repeat:no-repeat;padding-right:34px}
+.f .err{font-size:.78rem;color:var(--accent);min-height:1em}
+.f-full{grid-column:1/-1}
+.capture .status{display:flex;gap:10px;align-items:flex-start}
+.capture .status.is-ok{background:color-mix(in oklab,var(--ok) 14%,var(--bg));color:var(--fg)}
+.tool-nav{transition:top .4s var(--ease)}
+.site-header.is-hidden ~ main .tool-nav{top:env(safe-area-inset-top,0px)}
+.kpi .v.is-text{font-size:clamp(1.25rem,2.2vw,1.6rem);line-height:1.15}
+.tool-out .btn,.capture .btn{white-space:normal;text-align:center;line-height:1.25}
+.mobile-menu nav a em{font-style:normal;font-weight:600}
+.lead-wide{max-width:52ch}
