@@ -1,0 +1,34 @@
+/* Анкета заявки: пять вопросов, контакт, боковая колонка «что дальше». Цвета только токенами сайта. */
+.zv-hero .display{max-width:16ch}
+.zv-hero .lead{max-width:58ch;color:var(--fg-2)}
+.zv-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+@media (max-width:900px){.zv-grid{grid-template-columns:1fr}}
+.zv-form{display:grid;gap:14px;min-width:0}
+.zv-q{margin:0;padding:clamp(18px,2.4vw,26px);border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);min-width:0}
+.zv-q legend{float:left;width:100%;display:flex;gap:12px;align-items:baseline;margin-bottom:14px;font-size:clamp(1.1rem,1.6vw,1.3rem);font-weight:500}
+.zv-q legend b{font:500 .78rem var(--mono);color:var(--accent);flex:none}
+.zv-q legend+*{clear:both}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{position:relative;cursor:pointer}
+.opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.opt span{display:inline-block;padding:9px 15px;border-radius:999px;border:1px solid var(--line);font-size:.95rem;color:var(--fg);transition:background .2s,border-color .2s,color .2s}
+.opt:hover span{border-color:var(--fg-3)}
+.opt input:checked+span{background:var(--accent-fill);border-color:var(--accent-fill);color:var(--on-accent)}
+.opt input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.zv-q textarea{width:100%;resize:vertical;min-height:110px;font:inherit}
+.zv-contact .f small{font-weight:400;color:var(--fg-3);font-size:.82em}
+.zv-checks{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.zv-form [data-err="form"]{display:block;margin-top:10px}
+.zv-status{grid-column:1;padding:clamp(22px,3vw,32px);border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);display:grid;gap:8px;font-size:1.05rem}
+.zv-status b{font-weight:500;font-size:1.3rem}
+.zv-side{display:grid;gap:14px;position:sticky;top:96px}
+@media (max-width:900px){.zv-side{position:static}}
+.zv-card{padding:clamp(22px,3vw,30px);border-radius:var(--radius);background:var(--slab);color:var(--on-slab)}
+.zv-steps{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:14px;counter-reset:z}
+.zv-steps li{counter-increment:z;display:grid;gap:4px;padding-top:12px;border-top:1px solid rgba(241,238,232,.14);color:var(--on-slab-2)}
+.zv-steps li::before{content:counter(z);font:500 .72rem var(--mono);color:var(--slab-accent)}
+.zv-steps b{color:var(--on-slab);font-weight:500}
+.zv-links{display:grid;gap:8px;padding:6px 4px}
+.zv-links p{margin:0;color:var(--fg-3);font-size:.9rem}
+.zv-links a{color:var(--fg);text-decoration:none;font-weight:500}
+.zv-links a:hover{color:var(--accent)}
