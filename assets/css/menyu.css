@@ -1,0 +1,104 @@
+/* ==========================================================================
+   starostin.pro - страница «Решения» (/menyu/): меню по направлениям и корзина-пакет.
+   Цвета только из токенов site.css. Исключение - чипы кейсов в гамме страницы кейсов
+   (локальные токены --case-*). Без JS карточки и чекбоксы видны, корзина не нужна.
+   ========================================================================== */
+
+/* ---------- Первый экран ---------- */
+.mn-hero .btn-row{margin-top:30px}
+.mn-hero .anchors{margin-top:26px}
+
+/* ---------- Направления ---------- */
+.mn-dir + .mn-dir{border-top:1px solid var(--line)}
+.mn-dir .sec-head{margin-bottom:clamp(24px,3.4vw,44px)}
+.mn-count{font:600 .72rem/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3)}
+.mn-count.is-on{color:var(--accent)}
+
+.mn-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (min-width:1180px){.mn-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:680px){.mn-grid{grid-template-columns:1fr}}
+
+/* Карточка-выбор: <label> растянут на всю карточку (::after), поэтому клик по любому месту
+   отмечает пункт. Ссылки на кейсы лежат выше слоя метки и остаются кликабельными. */
+.mn-item{position:relative;display:flex;flex-direction:column;gap:10px;min-width:0;padding:clamp(18px,2.2vw,24px);
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  transition:border-color .25s,box-shadow .25s,background-color .25s}
+.mn-item:hover{border-color:var(--fg)}
+.mn-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.mn-num{font:600 .7rem var(--mono);letter-spacing:.1em;color:var(--fg-3)}
+.mn-pick{display:inline-flex;align-items:center;gap:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.mn-pick::after{content:"";position:absolute;inset:0;border-radius:inherit;cursor:pointer}
+.mn-pick input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
+.mn-box{flex:none;width:26px;height:26px;border-radius:7px;border:1.5px solid var(--fg-3);display:grid;place-items:center;color:var(--on-accent);background:var(--bg);
+  transition:background-color .2s,border-color .2s}
+.mn-box svg{width:16px;height:16px;opacity:0;transform:scale(.6);transition:opacity .2s,transform .25s var(--ease)}
+.mn-pick-t{font:600 .68rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--fg-2);order:-1}
+.mn-pick-t .is-on{display:none}
+.mn-pick input:checked + .mn-box{background:var(--accent-fill);border-color:var(--accent-fill)}
+.mn-pick input:checked + .mn-box svg{opacity:1;transform:none}
+.mn-pick input:checked ~ .mn-pick-t{color:var(--accent)}
+.mn-pick input:checked ~ .mn-pick-t .is-off{display:none}
+.mn-pick input:checked ~ .mn-pick-t .is-on{display:inline}
+.mn-pick input:focus-visible + .mn-box{outline:2px solid var(--accent-fill);outline-offset:3px}
+.mn-item:focus-within{border-color:var(--fg)}
+
+/* Выбранная карточка: коралловая рамка и лёгкая заливка.
+   Класс .is-on ставит menyu.js; :has() даёт то же без JS (отдельными правилами,
+   чтобы браузер без :has() не отбросил весь список селекторов). */
+.mn-item.is-on{border-color:var(--accent-fill);box-shadow:inset 0 0 0 1px var(--accent-fill);background:color-mix(in oklab,var(--accent-fill) 7%,var(--surface))}
+.mn-item:has(input:checked){border-color:var(--accent-fill);box-shadow:inset 0 0 0 1px var(--accent-fill);background:color-mix(in oklab,var(--accent-fill) 7%,var(--surface))}
+.mn-item:has(input:focus-visible){outline:2px solid var(--accent-fill);outline-offset:3px}
+
+.mn-name{font-size:clamp(1.2rem,1.6vw,1.35rem);font-weight:500;letter-spacing:-.02em;line-height:1.18}
+.mn-what{color:var(--fg-2);font-size:.95rem;line-height:1.5}
+.mn-who{font-size:.86rem;color:var(--fg-2);line-height:1.4}
+.mn-who span{display:block;font:600 .62rem/1.3 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--fg-3);margin-bottom:3px}
+.mn-price{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font:500 .74rem/1.4 var(--mono);letter-spacing:.04em;color:var(--fg-3)}
+
+/* Чипы кейсов: золото-зелёная гамма страницы кейсов, только этот элемент. */
+.mn-cases{--case-bg:#06302A;--case-ink:#C9A75E;position:relative;z-index:1;list-style:none;margin:2px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.mn-case{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;background:var(--case-bg);color:var(--case-ink);border:1px solid var(--case-ink);
+  font:500 .82rem/1.2 var(--sans);text-decoration:none;transition:background-color .2s,color .2s}
+.mn-case small{font:600 .58rem var(--mono);letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+.mn-case:hover,.mn-case:focus-visible{background:var(--case-ink);color:var(--case-bg)}
+.mn-case:focus-visible{outline:2px solid var(--case-ink);outline-offset:2px}
+
+/* ---------- С чего начать ---------- */
+.mn-start .display{margin-top:20px}
+.mn-start .lead{margin-top:24px;max-width:46ch}
+.mn-formats-h{margin-top:clamp(40px,6vw,64px);margin-bottom:16px}
+.mn-formats .offer{padding:22px;gap:10px}
+.mn-formats .offer h3{font-size:1.35rem}
+.mn-formats .offer .price{font-size:1.45rem}
+.mn-formats .offer .price.is-text{font:500 .76rem/1.4 var(--mono);letter-spacing:.04em;color:var(--fg-2)}
+.mn-formats .offer.is-first{border-color:var(--accent-fill)}
+
+/* ---------- Корзина-пакет ----------
+   Липкая панель снизу, видна только когда выбран хотя бы один пункт (атрибут hidden снимает menyu.js).
+   Под неё резервируется место в подвале, чтобы не перекрывать контент в конце страницы. */
+.mn-cart{position:fixed;z-index:45;left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));
+  bottom:calc(env(safe-area-inset-bottom,0px) + 12px);max-width:980px;margin-inline:auto;
+  display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;padding:14px 16px 14px 20px;border-radius:18px;
+  border:1px solid var(--line);box-shadow:0 24px 60px -24px rgba(0,0,0,.55)}
+.mn-cart[hidden]{display:none!important}
+.mn-cart-info{flex:1 1 260px;min-width:0;display:flex;flex-direction:column;gap:2px}
+.mn-cart-n{font:600 .72rem/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--fg-2)}
+.mn-cart-n b{color:var(--accent);font-size:1rem;letter-spacing:0}
+.mn-cart-list{font-size:.9rem;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mn-cart-act{display:flex;gap:8px;flex:none}
+@media (max-width:520px){
+  .mn-cart{padding:12px 12px 12px 16px;gap:10px}
+  .mn-cart-act{flex:1 1 100%}
+  .mn-cart-act .btn-accent{flex:1}
+}
+@media (prefers-reduced-motion:no-preference){
+  .mn-cart:not([hidden]){animation:mnCartIn .4s var(--ease)}
+  @keyframes mnCartIn{from{opacity:0;transform:translateY(16px)}}
+}
+html.mn-has-cart{scroll-padding-bottom:calc(var(--mn-cart-h,96px) + 24px)}
+.mn-has-cart .site-footer{padding-bottom:calc(28px + var(--mn-cart-h,96px) + 24px + env(safe-area-inset-bottom,0px))}
+
+/* Форма: блок «Уточнить компанию» (как на главной, стили там лежат в home.css) */
+.cap-more{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+.cap-more summary{cursor:pointer;font-size:.92rem;color:var(--fg-2)}
+.cap-more .f-grid{margin-top:12px}

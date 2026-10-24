@@ -32,7 +32,7 @@
       {"@type":"Question","name":"Нужно ли уметь программировать?","acceptedAnswer":{"@type":"Answer","text":"Нет. Программы рассчитаны на предпринимателей, маркетологов и руководителей. Мы работаем с готовыми нейросетями и конструкторами, а код появляется только там, где без него никак, и его пишет нейросеть."}},
       {"@type":"Question","name":"Какие нейросети вы используете, если ChatGPT и Claude недоступны?","acceptedAnswer":{"@type":"Answer","text":"Для задач с данными компании берём российские модели: GigaChat, YandexGPT и Алису AI, а также открытые модели на своих серверах. Зарубежные сервисы показываем там, где они дают заметный выигрыш, и объясняем, какие данные в них загружать нельзя."}},
       {"@type":"Question","name":"Можно ли загружать в нейросеть данные клиентов?","acceptedAnswer":{"@type":"Answer","text":"Персональные данные клиентов нельзя отправлять в зарубежные сервисы без законного основания: по 152-ФЗ это трансграничная передача. Перед загрузкой данные обезличивают или используют российские модели и решения на своих серверах."}},
-      {"@type":"Question","name":"Кто ведёт внедрение ИИ в компании?","acceptedAnswer":{"@type":"Answer","text":"Ваша команда. Я провожу сессию с руководителем и интенсив для сотрудников, обучаю внутренних ответственных и консультирую на созвонах раз в две недели. Внедряет сценарии и ведёт замер эффекта по моему шаблону ваш ответственный, цифры остаются у вас. Сроков и процентов результата я не обещаю: они зависят от процессов и людей внутри компании."}},
+      {"@type":"Question","name":"Кто ведёт внедрение ИИ в компании?","acceptedAnswer":{"@type":"Answer","text":"Ваша команда. Я провожу сессию с руководителем и интенсив для сотрудников, обучаю внутренних ответственных и консультирую на встречах раз в неделю. Внедряет сценарии и ведёт замер эффекта по моему шаблону ваш ответственный, цифры остаются у вас. Сроков и процентов результата я не обещаю: они зависят от процессов и людей внутри компании."}},
       {"@type":"Question","name":"Что делать, если сотрудники не захотят работать с ИИ?","acceptedAnswer":{"@type":"Answer","text":"Начинаем с задач, которые им самим надоели: сводки, отчёты, черновики писем. Когда человек видит, что нейросеть забирает рутину, а не его работу, сопротивление обычно уходит. Внутренние ответственные помогают коллегам на местах, и это работает лучше приказа сверху."}},
       {"@type":"Question","name":"Что, если эффекта не будет?","acceptedAnswer":{"@type":"Answer","text":"Гарантий я не даю: результат зависит от процессов и людей в компании. Поэтому с первой недели ваш ответственный ведёт замер по шаблону, и вы видите цифры сами. Каждый формат покупается отдельно: можно остановиться после сессии или интенсива и не брать программу целиком."}}
     ]}
@@ -47,9 +47,9 @@
   <div class="wrap nav">
     <a class="logo" href="./" aria-label="Александр Старостин, на главную"><svg class="logo-mark" viewBox="0 0 120 120" aria-hidden="true"><path d="M82.37 26.84 A40 40 0 1 0 85.71 90.64" fill="none" stroke="currentColor" stroke-width="7"/><line x1="20" y1="60" x2="44.62" y2="55.59" stroke="currentColor" stroke-width="3.2"/><circle cx="44.62" cy="55.59" r="5" fill="currentColor"/><circle cx="20" cy="60" r="7.2" fill="currentColor"/><circle cx="85.71" cy="90.64" r="6.4" fill="currentColor"/><circle cx="85.71" cy="29.36" r="9.6" fill="var(--mark-acc, #F08A62)"/></svg><span>Старостин</span></a>
     <ul class="nav-links">
-      <li><a href="obuchenie/">Обучение</a></li>
+      <li><a href="menyu/">Решения</a></li><li><a href="keysy/">Кейсы</a></li><li><a href="obuchenie/">Обучение</a></li>
       <li><a href="komandam/">Компаниям</a></li>
-      <li><a href="kalkulyatory/">Калькуляторы</a></li>
+      
       <li><a href="stati/">Статьи</a></li>
       <li><a href="o-avtore/">Об авторе</a></li>
     </ul>
@@ -63,9 +63,10 @@
 <div class="mobile-menu" id="mobile-menu" hidden>
   <button class="close" type="button" data-menu-close>Закрыть</button>
   <nav aria-label="Мобильное меню">
+    <a href="menyu/">Решения</a>
+    <a href="keysy/">Кейсы</a>
     <a href="obuchenie/"><em>Обучение</em></a>
     <a href="komandam/">Компаниям</a>
-    <a href="kalkulyatory/">Калькуляторы</a>
     <a href="stati/">Статьи</a>
     <a href="o-avtore/">Об авторе</a>
   </nav>
@@ -82,8 +83,8 @@
         <h1 class="display" data-split="hero">ИИ, который виден <b>в&nbsp;P<em>&amp;</em>L.</b></h1>
         <p class="lead" data-hero-fade>Нейросети в маркетинге, продажах и управлении. Я даю методику, обучаю команду и консультирую. Внедрение ведёт ваш ответственный, он же замеряет эффект по моему шаблону.</p>
         <div class="btn-row" data-hero-fade>
-          <a class="btn btn-accent" href="#kalkulyator" data-magnetic>Посчитать экономию ФОТ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn-ghost" href="https://t.me/starostinpro">Записаться на созвон</a>
+          <button class="btn btn-accent" type="button" data-capture="konsultaciya" data-capture-title="Консультация 1 час" data-magnetic>Консультация 1 час <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <a class="btn btn-ghost" href="#kalkulyator">Посчитать экономию ФОТ</a>
         </div>
         <a class="vcard" href="o-avtore/" data-hero-fade aria-label="Александр Старостин, ИИ-стратег: об авторе">
           <span class="vcard-ava"><span aria-hidden="true">АС</span><img src="assets/img/aleksandr-starostin.jpg" alt="" width="60" height="60" onerror="this.classList.add('is-missing')"></span>
@@ -300,7 +301,7 @@
         <li class="step reveal"><span class="when">Шаг 1</span><h3 class="h3">Сессия с руководителем.</h3><p>2-3 часа с собственником или топ-менеджером. Разбираем процессы, собираем карту возможностей ИИ и приоритеты на квартал. На выходе документ-карта.</p></li>
         <li class="step reveal"><span class="when">Шаг 2</span><h3 class="h3">Интенсив для команды.</h3><p>1-2 дня очно или онлайн на типовых задачах ваших отделов. Команда получает библиотеку промптов, шаблон политики работы с ИИ и шаблон замера эффекта.</p></li>
         <li class="step reveal"><span class="when">Шаг 3</span><h3 class="h3">Ваш ответственный внедряет.</h3><p>Внутренние ИИ-чемпионы ведут внедрение по методике: выбирают сценарии, запускают их в отделах и фиксируют цифры по шаблону замера.</p></li>
-        <li class="step reveal"><span class="when">Раз в 2 недели</span><h3 class="h3">Созвон и разбор.</h3><p>Разбираем задачи и решения ответственных, смотрим на их замеры, корректируем план. В рабочие дни отвечаю на вопросы в чате.</p></li>
+        <li class="step reveal"><span class="when">Раз в неделю</span><h3 class="h3">Встреча и разбор.</h3><p>Разбираем задачи и решения ответственных, смотрим на их замеры, корректируем план. В рабочие дни отвечаю на вопросы в чате.</p></li>
       </ol>
       </div>
     </div>
@@ -348,6 +349,8 @@
         <li class="client" data-logo="assets/img/clients/manifest.svg"><span class="wm wm-manifest">Манифест</span><small>Клуб</small></li>
         <li class="client" data-logo="assets/img/clients/k7.svg"><span class="wm wm-k7">К7</span><small>Клуб · Москва</small></li>
         </ul>
+      <div class="btn-row" style="margin-top:28px"><a class="btn btn-primary" href="keysy/" data-magnetic>Смотреть 8 кейсов</a><a class="btn btn-ghost" href="menyu/">Решения по направлениям</a></div>
+      <p class="note" style="margin-top:12px">Кейсы обезличены: названия компаний публикую только с письменного согласия клиента.</p>
     </div>
   </section>
   <section class="section-tight about" id="avtor">
@@ -369,12 +372,7 @@
           <div><b>Российские модели</b><span>GigaChat, YandexGPT и открытые модели для работы с данными компании</span></div>
           <div><b>Дайджесты для директоров</b><span>собираю ИИ-сводки новостей отрасли для руководителей</span></div>
         </div>
-        <p class="regalia-head">Регалии</p>
-        <ul class="regalia" aria-label="Регалии: черновик, список пришлёт автор">
-          <li class="is-draft">Регалия: заполнить</li>
-          <li class="is-draft">Регалия: заполнить</li>
-          <li class="is-draft">Регалия: заполнить</li>
-        </ul>
+        <!-- Регалии вернуть, когда автор пришлёт проверяемый список (docs/todo-pages.md) -->
         <div class="btn-row">
           <a class="btn btn-primary" href="o-avtore/" data-magnetic>Подробнее обо мне</a>
           <a class="btn btn-ghost" href="https://t.me/starostinpro">Написать в Telegram</a>
@@ -422,7 +420,7 @@
         <details><summary>Нужно ли уметь программировать?</summary><div class="ans"><div><p>Нет. Программы рассчитаны на предпринимателей, маркетологов и руководителей. Мы работаем с готовыми нейросетями и конструкторами, а код появляется только там, где без него никак, и его пишет нейросеть.</p></div></div></details>
         <details><summary>Какие нейросети вы используете, если ChatGPT и Claude недоступны?</summary><div class="ans"><div><p>Для задач с данными компании берём российские модели: GigaChat, YandexGPT и Алису AI, а также открытые модели на своих серверах. Зарубежные сервисы показываем там, где они дают заметный выигрыш, и объясняем, какие данные в них загружать нельзя.</p></div></div></details>
         <details><summary>Можно ли загружать в нейросеть данные клиентов?</summary><div class="ans"><div><p>Персональные данные клиентов нельзя отправлять в зарубежные сервисы без законного основания: по 152-ФЗ это трансграничная передача. Перед загрузкой данные обезличивают или используют российские модели и решения на своих серверах.</p></div></div></details>
-        <details><summary>Кто ведёт внедрение ИИ в компании?</summary><div class="ans"><div><p>Ваша команда. Я провожу сессию с руководителем и интенсив для сотрудников, обучаю внутренних ответственных и консультирую на созвонах раз в две недели. Внедряет сценарии и ведёт замер эффекта по моему шаблону ваш ответственный, цифры остаются у вас. Сроков и процентов результата я не обещаю: они зависят от процессов и людей внутри компании.</p></div></div></details>
+        <details><summary>Кто ведёт внедрение ИИ в компании?</summary><div class="ans"><div><p>Ваша команда. Я провожу сессию с руководителем и интенсив для сотрудников, обучаю внутренних ответственных и консультирую на встречах раз в неделю. Внедряет сценарии и ведёт замер эффекта по моему шаблону ваш ответственный, цифры остаются у вас. Сроков и процентов результата я не обещаю: они зависят от процессов и людей внутри компании.</p></div></div></details>
         <details><summary>Что делать, если сотрудники не захотят работать с ИИ?</summary><div class="ans"><div><p>Начинаем с задач, которые им самим надоели: сводки, отчёты, черновики писем. Когда человек видит, что нейросеть забирает рутину, а не его работу, сопротивление обычно уходит. Внутренние ответственные помогают коллегам на местах, и это работает лучше приказа сверху.</p></div></div></details>
         <details><summary>Что, если эффекта не будет?</summary><div class="ans"><div><p>Гарантий я не даю: результат зависит от процессов и людей в компании. Поэтому с первой недели ваш ответственный ведёт замер по шаблону, и вы видите цифры сами. Каждый формат покупается отдельно: можно остановиться после сессии или интенсива и не брать программу целиком.</p></div></div></details>
       </div>
@@ -435,43 +433,54 @@
       <div class="sec-head">
         <div class="ltr" aria-hidden="true"><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="3"/></svg><b>И</b><span>8 / 9</span></div>
         <div>
-          <h2 class="h2" data-split>Испытайте на своих <em>цифрах.</em></h2>
-          <p class="lead">Начните с бесплатного калькулятора или созвона на 30 минут. Дальше форматы по глубине: в любом формате для бизнеса внедрение ведёт ваша команда.</p>
+          <h2 class="h2" data-split>Испытайте на своих <em>задачах.</em></h2>
+          <p class="lead">Начните с консультации: за час разберём ваш бизнес и решим, где ИИ даст эффект первым. Дальше по глубине: сопровождение, обучение команды или внедрение под ключ. Готовые решения по направлениям собраны в <a href="menyu/">меню</a>.</p>
         </div>
       </div>
-      <div class="offers">
-        <article class="offer reveal">
-          <span class="kind">Клуб · скоро запуск · предзапись</span>
-          <h3>ИИ-неделя.</h3>
-          <p>Каждую неделю: что вышло в ИИ и куда это применить в работе. Клуб в разработке, идёт предзапись.</p>
-          <ul><li>Разбор новинок за 20 минут</li><li>Готовые сценарии и промпты</li><li>Эфир с вопросами раз в месяц</li></ul>
-          <p class="price">2 990 ₽<small>в месяц после запуска, отмена в любой момент</small></p>
-          <button class="btn btn-ghost btn-sm" type="button" data-capture="club-waitlist" data-capture-title="Предзапись в клуб «ИИ-неделя»">Записаться в лист ожидания</button>
-        </article>
-        <article class="offer reveal">
-          <span class="kind">Курс · 6 недель · скоро старт</span>
-          <h3>ИИ в маркетинге.</h3>
-          <p>Контент, аналитика и реклама с нейросетями. Учимся на ваших проектах.</p>
-          <ul><li>12 уроков и практика</li><li>Проверка домашних заданий</li><li>Доступ к материалам после курса</li></ul>
-          <p class="price">от 34 900 ₽<small>идёт предзапись</small></p>
-          <a class="btn btn-ghost btn-sm" href="obuchenie/#tarify">Записаться в лист ожидания</a>
-        </article>
+      <div class="line4">
         <article class="offer is-featured reveal">
-          <span class="kind">Компаниям · якорный формат</span>
-          <h3>Программа для <em>компании.</em></h3>
-          <p>Интенсив для команды, обучение внутренних ИИ-чемпионов и 3 месяца эдвайзинга. Внедрение ведёт ваша команда.</p>
-          <ul><li>Интенсив 1-2 дня на задачах отделов</li><li>1-3 ответственных ведут внедрение по методике</li><li>Замер эффекта ведёт ваш ответственный по шаблону</li></ul>
-          <p class="price">от 290 000 ₽<small>интенсив отдельно от 150 000 ₽, эдвайзинг от 90 000 ₽ в месяц</small></p>
+          <span class="kind">Шаг 1 · 1 час</span>
+          <h3>Консультация.</h3>
+          <p>Разбираем процессы и задачи, решаем, с чего начать. В стоимость входит карта бизнеса.</p>
+          <ul><li>Бриф до встречи</li><li>Час разбора с вами</li><li>Карта бизнеса и дорожная карта</li></ul>
+          <p class="price">10 000 ₽<small>карта бизнеса входит в стоимость</small></p>
+          <button class="btn btn-accent btn-sm" type="button" data-capture="konsultaciya" data-capture-title="Консультация 1 час" data-magnetic>Записаться</button>
         </article>
         <article class="offer reveal">
-          <span class="kind">Собственнику · 2-3 часа</span>
-          <h3>Стратегическая сессия.</h3>
-          <p>Разбираем процессы и собираем карту возможностей ИИ с приоритетами на квартал. Внедряет компания.</p>
-          <ul><li>Подготовка по анкете</li><li>Документ-карта и запись</li><li>Ответы на вопросы 2 недели</li></ul>
-          <p class="price">30 000 ₽<small>засчитывается в программу для компании</small></p>
+          <span class="kind">2-6 месяцев</span>
+          <h3>Сопровождение.</h3>
+          <p>Встречаемся раз в неделю и проходим все сферы бизнеса, где ИИ применим. Внедряет ваша команда, я веду и консультирую.</p>
+          <ul><li>Встреча раз в неделю</li><li>Ответы в чате в рабочие дни</li><li>Замер эффекта по шаблону</li></ul>
+          <p class="price is-ask">Стоимость<small>после консультации</small></p>
+          <button class="btn btn-ghost btn-sm" type="button" data-capture="soprovozhdenie" data-capture-title="Сопровождение 2-6 месяцев">Обсудить</button>
+        </article>
+        <article class="offer reveal">
+          <span class="kind">Компаниям</span>
+          <h3>Обучение команды.</h3>
+          <p>Практикум на задачах ваших отделов и точки контроля после него: у меня или у руководителя. Разовых тренингов без контроля не провожу.</p>
+          <ul><li>Практикум на ваших задачах</li><li>Методичка и промпты по ролям</li><li>Контрольные встречи</li></ul>
+          <p class="price is-ask">Стоимость<small>после консультации</small></p>
+          <button class="btn btn-ghost btn-sm" type="button" data-capture="obuchenie-komandy" data-capture-title="Обучение команды">Обсудить</button>
+        </article>
+        <article class="offer reveal">
+          <span class="kind">Под ключ</span>
+          <h3>Внедрение.</h3>
+          <p>Делаю и запускаю решение сам: цифровой продавец, сайт под поиск и нейросети, помощники для отделов.</p>
+          <ul><li>Цифровой продавец</li><li>Сайт и статьи</li><li>Помощники для отделов</li></ul>
+          <p class="price is-ask">Стоимость<small>после консультации</small></p>
+          <button class="btn btn-ghost btn-sm" type="button" data-capture="vnedrenie" data-capture-title="Внедрение под ключ">Обсудить</button>
         </article>
       </div>
-      <div class="btn-row" style="margin-top:28px"><a class="btn btn-primary" href="kalkulyatory/" data-magnetic>Все 7 калькуляторов</a><a class="btn btn-ghost" href="https://t.me/starostinpro">Созвон 30 минут</a></div>
+      <div class="map-card reveal">
+        <div>
+          <h3 class="h3">Что вы получите после консультации.</h3>
+          <p>Карта вашего бизнеса: всё, что мы разобрали, собрано в одном месте. С ней можно работать дальше самостоятельно или вместе со мной. Сейчас передаю её файлом, позже она появится в личном кабинете.</p>
+        </div>
+        <ul>
+          <li>Сегменты ваших клиентов</li><li>Ниша и объём рынка</li><li>Конкуренты и их слабые места</li><li>Что пишут в отзывах</li><li>Карта автоматизации по шагам</li><li>Три варианта стратегии</li><li>Дорожная карта встреч</li>
+        </ul>
+      </div>
+      <p class="line4-note">Для самостоятельного обучения: <a href="obuchenie/">клуб «ИИ-неделя» и курс «ИИ в маркетинге»</a> на предзаписи. Посчитать эффект заранее: <a href="kalkulyatory/">7 калькуляторов</a>.</p>
     </div>
   </section>
 
@@ -512,7 +521,7 @@
         <a class="logo" href="./" style="color:var(--on-slab);--mark-acc:var(--slab-accent)"><svg class="logo-mark" viewBox="0 0 120 120" aria-hidden="true"><path d="M82.37 26.84 A40 40 0 1 0 85.71 90.64" fill="none" stroke="currentColor" stroke-width="7"/><line x1="20" y1="60" x2="44.62" y2="55.59" stroke="currentColor" stroke-width="3.2"/><circle cx="44.62" cy="55.59" r="5" fill="currentColor"/><circle cx="20" cy="60" r="7.2" fill="currentColor"/><circle cx="85.71" cy="90.64" r="6.4" fill="currentColor"/><circle cx="85.71" cy="29.36" r="9.6" fill="var(--mark-acc, #F08A62)"/></svg><span>Старостин</span></a>
         <p style="margin-top:14px;color:var(--on-slab-2);max-width:34ch">Обучение и внедрение нейросетей для бизнеса. Каждую неделю: что вышло в ИИ и куда это применить в работе.</p>
       </div>
-      <div><h4>Разделы</h4><ul><li><a href="obuchenie/">Обучение</a></li><li><a href="komandam/">Компаниям</a></li><li><a href="kalkulyatory/">Калькуляторы</a></li><li><a href="stati/">Статьи</a></li><li><a href="o-avtore/">Об авторе</a></li></ul></div>
+      <div><h4>Разделы</h4><ul><li><a href="menyu/">Решения</a></li><li><a href="keysy/">Кейсы</a></li><li><a href="obuchenie/">Обучение</a></li><li><a href="komandam/">Компаниям</a></li><li><a href="kalkulyatory/">Калькуляторы</a></li><li><a href="stati/">Статьи</a></li><li><a href="o-avtore/">Об авторе</a></li></ul></div>
       <div><h4>Связь</h4><ul><li><a href="https://t.me/starostinpro">Telegram</a></li><li><a href="https://www.instagram.com/starostin.pro/">Instagram</a></li></ul></div>
       <div><h4>Документы</h4><ul><li><a href="dok/politika/">Политика обработки ПДн</a></li><li><a href="dok/soglasie/">Согласие на обработку ПДн</a></li><li><a href="dok/oferta/">Публичная оферта</a></li><li><a href="dok/cookies/">Политика cookies</a></li></ul></div>
     </div>
@@ -536,17 +545,19 @@
       <button class="capture-x" type="button" data-cap-close aria-label="Закрыть">×</button>
     </div>
     <div class="capture-sum" data-cap-sum hidden></div>
-    <p class="muted" style="font-size:.92rem">Отвечу лично: по расчёту пришлю комментарии, что реально для вашей компании и с чего начать, по клубу&nbsp;- условия и дату запуска. Предзапись ни к чему не обязывает: оплаты сейчас нет. Вместе с заявкой из калькулятора отправятся ваши вводные и результат расчёта. Без спама и без звонков «по скрипту».</p>
+    <p class="muted" style="font-size:.92rem">Отвечу лично: по консультации предложу время и пришлю короткий бриф, по расчёту&nbsp;- комментарии, что реально для вашей компании, по клубу&nbsp;- условия и дату запуска. Предзапись ни к чему не обязывает: оплаты сейчас нет. Вместе с заявкой из калькулятора отправятся ваши вводные и результат расчёта. Без спама и без звонков «по скрипту».</p>
     <form novalidate>
       <div class="f-grid">
         <div class="f"><label for="cap-name">Имя</label><input class="input" id="cap-name" name="name" autocomplete="given-name" required><span class="err" data-err="name"></span></div>
+<div class="f f-full"><label for="cap-contact">Телефон или Telegram</label><input class="input" id="cap-contact" name="contact" inputmode="text" autocomplete="tel" placeholder="+7 9XX XXX-XX-XX или @username" required><span class="err" data-err="contact"></span></div>
+      </div>
+      <details class="cap-more"><summary>Уточнить компанию (необязательно)</summary><div class="f-grid">
         <div class="f"><label for="cap-role">Должность</label>
           <select id="cap-role" name="role"><option value="">Выберите</option><option>Собственник</option><option>Генеральный директор</option><option>Финансовый директор</option><option>Операционный директор</option><option>Директор по маркетингу</option><option>Коммерческий директор</option><option>Руководитель отдела</option><option>Другое</option></select></div>
         <div class="f"><label for="cap-company">Компания</label><input class="input" id="cap-company" name="company" autocomplete="organization"></div>
         <div class="f"><label for="cap-size">Сотрудников</label>
           <select id="cap-size" name="size"><option value="">Выберите</option><option>до 15</option><option>16-100</option><option>101-250</option><option>251-1000</option><option>больше 1000</option></select></div>
-        <div class="f f-full"><label for="cap-contact">Телефон или Telegram</label><input class="input" id="cap-contact" name="contact" inputmode="text" autocomplete="tel" placeholder="+7 9XX XXX-XX-XX или @username" required><span class="err" data-err="contact"></span></div>
-      </div>
+              </div></details>
       <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px">
         <label class="check"><input type="checkbox" id="cap-pd" name="pd"><span>Даю <a href="dok/soglasie/">согласие на обработку персональных данных</a> для ответа на заявку или предзаписи в клуб, включая переданные вводные и результат расчёта. С <a href="dok/politika/">политикой</a> ознакомлен. Обязательно.</span></label>
         <label class="check"><input type="checkbox" id="cap-ads" name="ads"><span>Хочу получать полезные материалы и предложения. Можно не отмечать.</span></label>

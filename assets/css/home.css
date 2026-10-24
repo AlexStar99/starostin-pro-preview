@@ -167,3 +167,21 @@ img.is-missing{display:none!important}
   .star-rail b{font-size:.86rem}
 }
 @media (prefers-reduced-motion:reduce){.star-rail,.star-rail i,.hero-mark-wm span{transition:none}}
+
+/* ---------- Линейка из четырёх форматов, карта бизнеса, форма ---------- */
+.line4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.line4 .offer{display:flex;flex-direction:column}
+.line4 .offer .btn{margin-top:auto;align-self:flex-start}
+.line4 .price.is-ask{font-size:1.25rem}
+@media (max-width:1100px){.line4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.line4{grid-template-columns:1fr}}
+.map-card{margin-top:14px;display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(18px,4vw,48px);align-items:start;padding:clamp(22px,3vw,34px);border-radius:var(--radius);background:var(--slab);color:var(--on-slab)}
+.map-card p{color:var(--on-slab-2);margin-top:10px}
+.map-card ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 22px}
+.map-card li{display:flex;gap:10px;align-items:baseline;font-size:.98rem}
+.map-card li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--slab-accent);transform:translateY(-2px)}
+@media (max-width:820px){.map-card{grid-template-columns:1fr}.map-card ul{grid-template-columns:1fr}}
+.line4-note{margin-top:18px;color:var(--fg-2);font-size:.95rem}
+.cap-more{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+.cap-more summary{cursor:pointer;font-size:.92rem;color:var(--fg-2)}
+.cap-more .f-grid{margin-top:12px}

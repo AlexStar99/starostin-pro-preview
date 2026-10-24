@@ -10,6 +10,7 @@
   const title = $('[data-cap-title]');
   const status = $('[data-cap-status]');
   const submit = $('button[type="submit"]');
+  const submitText = submit.textContent;
   let source = '';
 
   const open = (src, heading) => {
@@ -17,7 +18,8 @@
     const data = (window.__capture || {})[src];
     title.textContent = heading || 'Получить расчёт';
     sum.hidden = !data;
-    if (data) sum.innerHTML = `<b>${data.title}</b>` + data.lines.map(l => `<span>${l}</span>`).join('') + '<span>Расчёт ознакомительный, по вашим вводным: не прогноз и не обещание результата.</span>';
+    // оговорка про расчёт только у калькуляторов; у пакета решений и консультаций её нет
+    if (data) sum.innerHTML = `<b>${data.title}</b>` + data.lines.map(l => `<span>${l}</span>`).join('') + (data.calc === false ? '' : '<span>Расчёт ознакомительный, по вашим вводным: не прогноз и не обещание результата.</span>');
     status.hidden = true; form.hidden = false;
     if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
     window.__site?.lenis?.stop();
@@ -66,6 +68,6 @@
     status.innerHTML = sent
       ? '<span>Готово. Александр ответит лично в удобный вам канал, обычно в течение рабочего дня.</span>'
       : '<span>Демо-режим: сервер заявок не подключён, данные никуда не отправлены. На рабочем сайте заявка сразу уйдёт Александру. Пока можно <a href="https://t.me/starostinpro">написать в Telegram</a>.</span>';
-    submit.textContent = 'Получить расчёт'; sync();
+    submit.textContent = submitText; sync();
   });
 })();

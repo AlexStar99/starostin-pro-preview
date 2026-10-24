@@ -1,0 +1,167 @@
+/* ==========================================================================
+   starostin.pro - страница «Кейсы» (/keysy/)
+   Карточки кейсов в стиле «созвездие»: глубокий гоночный зелёный и золото.
+   Токены --cs-* живут только на этой странице. Остальная страница на токенах site.css,
+   коралл остаётся сигналом CTA и на карточках не используется.
+   Контраст на самом светлом зелёном фона карточки (#0B3D35):
+   слоновая кость #F3EEDF 10,4:1 · текст #CFC8B3 7,2:1 · золото #C9A75E 5,3:1 · светлое золото #E6CF93 7,9:1.
+   Контент виден без JS: ленты просто скроллятся, фильтр и кнопки появляются только с JS.
+   ========================================================================== */
+
+:root{
+  --cs-green-0:#021A16;   /* глубина: края виньетки */
+  --cs-green:#06302A;     /* основной зелёный */
+  --cs-green-2:#0B3D35;   /* свет в центре карточки */
+  --cs-gold:#C9A75E;
+  --cs-gold-2:#E6CF93;
+  --cs-ivory:#F3EEDF;
+  --cs-ivory-2:#CFC8B3;
+  --cs-hair:rgba(201,167,94,.26);
+  --cs-gold-ink:#7A5D1E;  /* золото для мелочей на бумаге: 5,5:1 к #F4F3EF */
+  --cs-shadow:rgba(2,26,22,.55);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--cs-gold-ink:#C9A75E;--cs-shadow:rgba(0,0,0,.7)}}
+:root[data-theme="dark"]{--cs-gold-ink:#C9A75E;--cs-shadow:rgba(0,0,0,.7)}
+
+.cs-sprite{position:absolute;width:0;height:0;overflow:hidden}
+
+/* ---------- Первый экран ---------- */
+.cs-hero .display{max-width:20ch}
+.cs-filter{display:flex;flex-direction:column;gap:14px}
+.cs-filter[hidden]{display:none}
+.cs-filter .chip{min-height:40px}
+.cs-count{font:500 .72rem/1.4 var(--mono);letter-spacing:.06em;color:var(--fg-3)}
+.cs-anon{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);max-width:78ch;font-size:.86rem;line-height:1.55;color:var(--fg-3)}
+
+/* ---------- Список кейсов ---------- */
+.cs-list{padding-block:clamp(24px,4vw,56px) clamp(48px,7vw,96px)}
+.cs-case{padding-bottom:clamp(32px,4.5vw,60px)}
+.cs-case>.wrap::before{content:"";display:block;height:1px;background:var(--line);margin-bottom:clamp(28px,4vw,52px)}
+.cs-case[hidden]{display:none}
+.cs-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;margin-bottom:20px}
+.cs-kicker{display:flex;gap:.8em;align-items:baseline;font:600 .74rem/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--fg-2)}
+.cs-kicker b{font-weight:600;color:var(--cs-gold-ink)}
+.cs-tags{list-style:none;margin:0;padding:0}
+.cs-tags .tag{white-space:nowrap}
+
+/* ---------- Лента ---------- */
+.cs-rail{position:relative;container-type:inline-size;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--line) transparent;padding-block:2px 26px;border-radius:22px}
+.cs-rail:focus-visible{outline:2px solid var(--accent-fill);outline-offset:4px}
+@media (prefers-reduced-motion:no-preference){.cs-rail{scroll-behavior:smooth}}
+.cs-track{list-style:none;margin:0;padding:0;display:grid;grid-auto-flow:column;grid-auto-columns:35cqi;gap:20px;width:max-content}
+@media (max-width:1099px){.cs-track{grid-auto-columns:44cqi;gap:16px}}
+@media (max-width:760px){
+  /* на телефоне лента выходит к краям экрана, карточка 82vw */
+  .cs-rail{margin-inline:calc(-1 * var(--gutter));scroll-padding-inline:var(--gutter);border-radius:0}
+  .cs-track{grid-auto-columns:82cqi;gap:14px;padding-inline:var(--gutter)}
+}
+
+/* ---------- Карточка «созвездие» ---------- */
+.cs-card{position:relative;isolation:isolate;overflow:hidden;container-type:inline-size;aspect-ratio:4/5;scroll-snap-align:start;
+  display:flex;flex-direction:column;gap:14px;padding:24px;border-radius:20px;color:var(--cs-ivory-2);
+  background:radial-gradient(125% 95% at 24% 14%,var(--cs-green-2) 0%,var(--cs-green) 48%,var(--cs-green-0) 100%);
+  border:1px solid rgba(201,167,94,.22);
+  box-shadow:inset 0 1px 0 rgba(230,207,147,.08),0 14px 28px -18px var(--cs-shadow);
+  transition:border-color .45s var(--ease),box-shadow .45s var(--ease)}
+@media (min-width:1100px){.cs-card{padding:28px}}
+/* виньетка и тонкая внутренняя рамка */
+.cs-card::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(115% 85% at 50% 42%,transparent 52%,rgba(2,26,22,.6) 100%)}
+.cs-card::after{content:"";position:absolute;inset:9px;z-index:-1;pointer-events:none;border:1px solid rgba(201,167,94,.11);border-radius:14px}
+.cs-card:hover{border-color:rgba(201,167,94,.5);box-shadow:inset 0 1px 0 rgba(230,207,147,.12),0 16px 30px -16px var(--cs-shadow)}
+.cs-sky{position:absolute;inset:0;width:100%;height:100%;max-width:none;z-index:-2;color:var(--cs-gold);pointer-events:none;transition:transform 1.4s var(--ease)}
+.cs-card:hover .cs-sky{transform:scale(1.04) translate(-1%,1%)}
+
+.cs-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font:600 .68rem/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase}
+.cs-label{color:var(--cs-gold)}
+.cs-num{color:var(--cs-ivory-2);letter-spacing:.1em;font-variant-numeric:tabular-nums}
+.cs-title{margin:0;font:650 clamp(1.25rem,7.4cqi,1.95rem)/1.08 var(--sans);letter-spacing:-.025em;color:var(--cs-ivory);text-wrap:balance}
+.cs-text,.cs-sub{font-size:clamp(.86rem,4.3cqi,1.02rem);line-height:1.5}
+.cs-body{margin-top:auto;display:flex;flex-direction:column;gap:clamp(10px,4cqi,16px)}
+
+/* К1 · КЕЙС */
+.cs-mark{width:30cqi;max-width:124px;height:auto;margin-top:auto;margin-bottom:2cqi;overflow:visible;filter:drop-shadow(0 0 14px rgba(230,207,147,.18))}
+.cs-k1 .cs-title{font-size:clamp(1.5rem,9cqi,2.4rem);line-height:1.04}
+.cs-k1 .cs-sub{color:var(--cs-ivory-2)}
+.cs-foot{margin-top:auto;padding-top:14px;border-top:1px solid var(--cs-hair);font:600 .7rem/1 var(--mono);letter-spacing:.16em;color:var(--cs-gold)}
+
+/* К2 · ЗАДАЧА: цитата */
+.cs-quote{margin:4px 0 0;padding-left:16px;border-left:1px solid var(--cs-gold)}
+.cs-quote blockquote{margin:0}
+.cs-quote p{font:400 clamp(1rem,5.2cqi,1.28rem)/1.38 var(--sans);letter-spacing:-.01em;color:var(--cs-ivory)}
+.cs-quote figcaption{margin-top:10px;font:600 .66rem/1.2 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--cs-gold)}
+
+/* К3 · ЧТО СДЕЛАНО: маркеры-звёздочки (маленькие золотые круги) */
+.cs-stars{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:clamp(6px,2.6cqi,11px);font-size:clamp(.8rem,3.95cqi,.97rem);line-height:1.42}
+.cs-stars li{position:relative;padding-left:20px}
+.cs-stars li::before{content:"";position:absolute;left:3px;top:.5em;width:6px;height:6px;border-radius:50%;background:var(--cs-gold-2);
+  box-shadow:0 0 0 3px rgba(201,167,94,.16),0 0 10px rgba(230,207,147,.45)}
+
+/* К4 · ПРОЦЕСС: три шага-звезды на волосяной линии */
+.cs-steps{--gap:clamp(22px,11cqi,46px);--nc:.56em;list-style:none;margin:auto 0;padding:0;display:flex;flex-direction:column;gap:var(--gap)}
+.cs-steps li{position:relative;padding-left:34px;font:620 clamp(1.1rem,6.4cqi,1.65rem)/1.12 var(--sans);letter-spacing:-.022em;color:var(--cs-ivory)}
+.cs-steps li::before{content:"";position:absolute;left:2px;top:var(--nc);width:11px;height:11px;margin-top:-5.5px;border-radius:50%;background:var(--cs-gold-2);
+  box-shadow:0 0 0 4px rgba(201,167,94,.14),0 0 16px rgba(230,207,147,.55)}
+.cs-steps li::after{content:"";position:absolute;left:7px;top:var(--nc);width:1px;height:calc(100% + var(--gap));
+  background:linear-gradient(var(--cs-gold),rgba(201,167,94,.4))}
+.cs-steps li:last-child::after{display:none}
+.cs-step-t{display:block}
+.cs-step-t::first-letter{text-transform:uppercase}
+
+/* К5 · ВЫВОД: строки по ролям */
+.cs-roles{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;font-size:clamp(.8rem,3.95cqi,.97rem);line-height:1.42}
+.cs-roles li{padding-block:clamp(7px,2.6cqi,11px);border-top:1px solid var(--cs-hair)}
+.cs-roles li:last-child{padding-bottom:0}
+.cs-role{display:block;margin-bottom:3px;font:600 .66rem/1.3 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--cs-gold)}
+
+/* ---------- Управление лентой и оговорка ---------- */
+.cs-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 28px;margin-top:0}
+.cs-ctrl{display:flex;align-items:center;gap:8px}
+.cs-ctrl[hidden]{display:none}
+.cs-btn{width:44px;height:44px;flex:none;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--fg);display:grid;place-items:center;cursor:pointer;
+  transition:border-color .25s,background .25s,color .25s,opacity .25s}
+.cs-btn svg{width:18px;height:18px}
+.cs-btn:hover:not(:disabled){border-color:var(--fg)}
+.cs-btn:disabled{opacity:.32;cursor:default}
+.cs-dots{display:flex;align-items:center}
+.cs-dot{width:26px;height:32px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center}
+.cs-dot::before{content:"";width:7px;height:7px;border-radius:999px;background:var(--fg-3);opacity:.55;transition:width .35s var(--ease),background-color .3s,opacity .3s}
+.cs-dot:hover::before{opacity:1}
+.cs-dot[aria-current="true"]::before{width:20px;background:var(--cs-gold-ink);opacity:1}
+.cs-note{display:flex;gap:10px;align-items:baseline;max-width:62ch;font-size:.86rem;line-height:1.5;color:var(--fg-2)}
+.cs-note::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--cs-gold-ink);transform:translateY(-1px)}
+
+/* ---------- «Кейс текстом» ---------- */
+.cs-plain{margin-top:18px;border-top:1px solid var(--line)}
+.cs-plain summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:12px;padding:16px 0;font:600 .74rem/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--fg-2)}
+.cs-plain summary::-webkit-details-marker{display:none}
+.cs-plain summary::after{content:"+";width:26px;height:26px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font:400 1rem/1 var(--mono);transition:transform .35s var(--ease)}
+.cs-plain[open] summary::after{transform:rotate(45deg)}
+.cs-plain summary:hover{color:var(--fg)}
+.cs-plain-body{max-width:70ch;padding-bottom:12px;color:var(--fg-2);font-size:1rem;line-height:1.6}
+.cs-plain-body>*+*{margin-top:.6em}
+.cs-plain-body h3{margin-top:1.3em;font:600 1.08rem/1.3 var(--sans);letter-spacing:-.01em;color:var(--fg)}
+.cs-plain-body h3:first-child{margin-top:.2em}
+.cs-plain-body ul{margin-block:.5em 0;padding-left:1.2em}
+.cs-plain-body li+li{margin-top:.3em}
+.cs-plain-body li::marker{color:var(--cs-gold-ink)}
+.cs-plain-body figure{margin:.6em 0 0;padding-left:14px;border-left:2px solid var(--line)}
+.cs-plain-body blockquote{margin:0;color:var(--fg)}
+.cs-plain-body figcaption{margin-top:4px;font:500 .74rem var(--mono);letter-spacing:.06em;color:var(--fg-3)}
+
+/* ---------- CTA ---------- */
+.cs-cta .display{max-width:15ch;font-size:clamp(2.4rem,6vw,5.2rem)}
+.cs-cta .cs-cta-lead{margin-top:26px;max-width:44ch}
+.cs-cta .btn-row{margin-top:34px}
+
+@media (max-width:420px){
+  .cs-head{margin-bottom:16px}
+  .cs-card{padding:22px}
+  .cs-bar{flex-direction:column;align-items:flex-start}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .cs-card:hover .cs-sky{transform:none}
+  .cs-rail{scroll-behavior:auto}
+}
